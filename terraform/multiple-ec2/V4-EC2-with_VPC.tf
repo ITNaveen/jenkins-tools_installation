@@ -28,6 +28,14 @@ resource "aws_security_group" "demo-sg" {
     protocol = "tcp"
   }
 
+  ingress {
+    description = "jenkins-access"
+    from_port = 8080
+    to_port   = 8080
+    cidr_blocks = ["0.0.0.0/0"]
+    protocol = "tcp"
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
