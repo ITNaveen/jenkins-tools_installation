@@ -77,6 +77,9 @@ resource "aws_subnet" "dpp-public-subnet-01" {
       cidr_block = "0.0.0.0/0"  #any instance in this vpc can access the whole internet.
       gateway_id = aws_internet_gateway.dpp-igw.id
     }
+    tags = {
+      Name = "dpp-public-rt"
+    }
   }
   resource "aws_route_table_association" "dpp-rta-public-subnet-01" {
     subnet_id = aws_subnet.dpp-public-subnet-01.id
