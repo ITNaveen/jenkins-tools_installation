@@ -1,11 +1,3 @@
-# we need these in slave - 
-- update the system
-- install java
-- download maven
-- extract it 
-
-- now we need to create slave set up file in anible, so jenkins-slave.
-- in ansible server, in /opt/ make slave yaml and paste this.
 ---
 - hosts: jenkins-slave
   become: true
@@ -13,6 +5,7 @@
   - name: update ubuntu repo
     apt:
       update_cache: yes   #apt update -y bascially.
+      force_apt_get: yes  # forrce ansible to use apt-get instead of apt, whereapt doesnt work
       cache_valid_time: 3600  #If the cache is still fresh within this time, it won’t update again.
 
   - name: install java
@@ -26,7 +19,7 @@
       url: https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz   #this get downloaded in worker node.
       dest: /opt
 
-  - name: extract maven packagesß
+  - name: extract maven packages
     unarchive:
       src: /opt/apache-maven-3.9.9-bin.tar.gz
       dest: /opt
@@ -37,4 +30,6 @@
       path: /etc/profile
       line: 'export PATH=/opt/apache-maven-3.9.9/bin:$PATH'
       state: present
-- now in worker node in /opt we have maven.
+
+  # if i install somehing from apt then dont need to define path as it puts its binaries in "/usr/bin" or "usr/sbin" but Software downloaded manually (like your Maven case):
+  # You choose where to put it (like /opt, You must manually add to PATH and System doesn't know where to find it.
