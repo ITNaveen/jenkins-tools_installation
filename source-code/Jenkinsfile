@@ -19,5 +19,18 @@ pipeline {
                 }
             }
         }
-    }
+
+        stage('SonarQube analysis') {
+        environment {
+            scannerHome = tool 'sonar-scanner' //this is tool name.
+        }
+            steps {
+                dir ('source-code') {
+                    withSonarQubeEnv('sonarqube-server') { // server name, to be found in system in jenkins.
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
+                }
+            }
+        }
+    } 
 }

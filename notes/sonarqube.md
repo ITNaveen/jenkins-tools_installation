@@ -45,4 +45,7 @@ sonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
   - create org - ITNaveen - free_plan - create.
   - now in this org - create project - fill details up there.
 
-  
+# add sonarqube stage - 
+withSonarQubeEnv is a sever name. (check from system)
+tool name from tools.
+
