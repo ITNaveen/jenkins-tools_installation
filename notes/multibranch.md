@@ -11,5 +11,5 @@
 git checkout -b stage
 then remove all jenkins file from this branch then push.
 Now i have scanned branch from multibranch job but it couldn.t detect that.
-i will now add jenkinsfile and see what happen - 
+i will now add jenkinsfile and see what happen, so now stage is visible as well.
 
