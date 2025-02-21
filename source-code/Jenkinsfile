@@ -10,12 +10,20 @@ pipeline {
     }
 
     stages {
-        stage('Build & Test') {
+        stage('Build') {
             steps {
                 dir('source-code') {
-                    echo "Building the project..."
-                    sh 'mvn clean verify'
+                    echo "------build started ---------"
+                    sh 'mvn clean deploy -Dmaven.test.skip=true'
+                    echo "------build completed ---------"
                 }
+            }
+        }
+        stage('test') {
+            steps{
+                echo "------unit test started ---------"
+                sh 'mvn surefire-report:report'
+                echo "------unit test completed ---------"
             }
         }
 
