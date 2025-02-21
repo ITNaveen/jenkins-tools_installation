@@ -6,11 +6,12 @@ pipeline {
     }
 
     stages {
-        stage('Clone-repo') {
+        stage('Clone Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/ITNaveen/jenkins-tools_installation.git'
+                echo "Source code is already checked out by Jenkins"
             }
         }
+
         stage('Set Working Directory') {
             steps {
                 dir('source-code') {
@@ -18,5 +19,20 @@ pipeline {
                 }
             }
         }
+        
+envirnoment {
+    PATH = '/opt/apache-maven-3.9.2/bin:$PATH'
+}
+
+        stage('build') {
+            steps {
+                sh 'mvn clean deploy'
+            }
+
+        }
+
+
+
+
     }
 }
