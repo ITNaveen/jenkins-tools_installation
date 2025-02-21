@@ -10,4 +10,6 @@
 - lets create another branch stage but without jenkins file - 
 git checkout -b stage
 then remove all jenkins file from this branch then push.
+Now i have scanned branch from multibranch job but it couldn.t detect that.
+i will now add jenkinsfile and see what happen - 
 
