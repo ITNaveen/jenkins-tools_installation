@@ -6,9 +6,16 @@ pipeline {
     }
 
     stages {
-        stage ('Clone-repo') {
+        stage('Clone-repo') {
             steps {
-                git branch: 'main', url: 'https://github.com/ITNaveen/Jenkins--tweet-trend-new.git'
+                git branch: 'main', url: 'https://github.com/ITNaveen/jenkins-tools_installation.git'
+            }
+        }
+        stage('Set Working Directory') {
+            steps {
+                dir('source-code') {
+                    echo "Now inside the source-code directory"
+                }
             }
         }
     }
