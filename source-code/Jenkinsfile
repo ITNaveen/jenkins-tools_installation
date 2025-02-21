@@ -5,30 +5,19 @@ pipeline {
         }
     }
 
-    stages {
-        stage('Clone Code') {
-            steps {
-                echo "Source code is already checked out by Jenkins"
-            }
-        }
+    environment {
+        PATH = "/opt/apache-maven-3.9.9/bin:$PATH"
+    }
 
-        stage('Set Working Directory') {
+    stages {
+        stage('build') {
             steps {
                 dir('source-code') {
-                    echo "Now inside the source-code directory"
+                    echo "now inside the source-code dir"
+                    sh 'mvn clean deploy'
+
                 }
             }
         }
-
-        stage('build') {
-            steps {
-                sh 'mvn clean deploy'
-            }
-
-        }
-
-
-
-
     }
 }
