@@ -25,7 +25,7 @@ pipeline {
             }
             steps {
                 dir('source-code') {
-                    withSonarQubeEnv('sonarqube-server') {
+                    withSonarQubeEnv('sonarqube-server') {  // check from system, its s server name.
                         sh "${scannerHome}/bin/sonar-scanner"
                     }
                 }
