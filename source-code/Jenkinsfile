@@ -5,6 +5,11 @@ pipeline {
         }
     }
 
+    options {
+        timestamps() // Adds timestamps for better logging
+        disableConcurrentBuilds() // Ensures only one build runs at a time
+    }
+
     environment {
         PATH = "/opt/apache-maven-3.9.9/bin:$PATH"
     }
