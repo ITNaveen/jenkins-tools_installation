@@ -10,27 +10,26 @@ pipeline {
     }
 
     stages {
-        stage('build') {
+        stage('Build & Test') {
             steps {
                 dir('source-code') {
-                    echo "now inside the source-code dir"
-                    sh 'mvn clean deploy'
-
+                    echo "Building the project..."
+                    sh 'mvn clean verify'
                 }
             }
         }
 
-        stage('SonarQube analysis') {
-        environment {
-            scannerHome = tool 'sonar-scanner' //this is tool name.
-        }
+        stage('SonarQube Analysis') {
+            environment {
+                scannerHome = tool 'sonar-scanner' // Jenkins tool name
+            }
             steps {
-                dir ('source-code') {
-                    withSonarQubeEnv('sonarqube-server') { // server name, to be found in system in jenkins.
+                dir('source-code') {
+                    withSonarQubeEnv('sonarqube-server') {
                         sh "${scannerHome}/bin/sonar-scanner"
                     }
                 }
             }
         }
-    } 
+    }
 }
