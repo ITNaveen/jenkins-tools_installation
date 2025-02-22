@@ -72,7 +72,7 @@ pipeline {
                               "files": [
                                 {
                                   "pattern": "jarstaging/(*)",
-                                  "target": "tweet-maven-artifact-maven-remote",
+                                  "target": "tweet-maven-artifact-maven-remote/{1}",
                                   "flat": "false",
                                   "props" : "${properties}",
                                   "exclusions": [ "*.sha1", "*.md5"]
