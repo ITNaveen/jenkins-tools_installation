@@ -65,10 +65,10 @@ pipeline {
             steps {
                 script {
                         echo '<--------------- Jar Publish Started --------------->'
-                          def registry = 'https://trial5or6oo.jfrog.io'
-                         def server = Artifactory.newServer url:registry+"/artifactory" ,  credentialsId:"artifact-cred"
-                         def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}";
-                         def uploadSpec = """{
+                        def registry = 'https://trial5or6oo.jfrog.io'
+                        def server = Artifactory.newServer url:registry+"/artifactory" ,  credentialsId:"artifact-cred"
+                        def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}";
+                        def uploadSpec = """{
                               "files": [
                                 {
                                   "pattern": "jarstaging/(*)",
@@ -89,3 +89,4 @@ pipeline {
         } 
     }
 }
+# lecture - 53
